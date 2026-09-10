@@ -6,7 +6,7 @@ import { addIcons } from 'ionicons';
 import { add, arrowForward, bagHandle, remove, search, star } from 'ionicons/icons';
 import { CartService } from '../cart/cart.service';
 
-type Category = 'Todo' | 'Favoritos' | 'Platos fuertes';
+type Category = 'Todo' | 'Favoritos' | 'Antojitos' | 'Platos fuertes';
 interface MenuItem {
   id: number;
   name: string;
@@ -25,24 +25,24 @@ interface MenuItem {
   imports: [FormsModule, IonContent, IonIcon],
 })
 export class HomePage {
-  readonly categories: Category[] = ['Todo', 'Favoritos', 'Platos fuertes'];
+  readonly categories: Category[] = ['Todo', 'Favoritos', 'Antojitos', 'Platos fuertes'];
   selectedCategory: Category = 'Todo';
   searchTerm = '';
   readonly menuItems: MenuItem[] = [
     {
       id: 1,
-      name: 'Carne a la plancha',
-      description: 'Corte de res a la plancha, acompañado de guarnición de la casa.',
+      name: 'Pupusas revueltas',
+      description: 'Pupusas de maíz rellenas de queso, chicharrón y frijol, con curtido casero.',
       price: 12.5,
-      category: 'Platos fuertes',
-      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85',
+      category: 'Antojitos',
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
       favorite: true,
       badge: 'Favorito',
     },
     {
       id: 2,
-      name: 'Sopa de gallina',
-      description: 'Caldo casero de gallina con verduras frescas y hierbas aromáticas.',
+      name: 'Sopa de gallina india',
+      description: 'Caldo reconfortante con gallina, verduras de temporada y hierbabuena fresca.',
       price: 7.5,
       category: 'Platos fuertes',
       image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=85',
@@ -50,28 +50,28 @@ export class HomePage {
     },
     {
       id: 3,
-      name: 'Camarones al ajillo',
-      description: 'Camarones salteados al ajillo, con mantequilla y un toque de limón.',
+      name: 'Camarones de La Libertad',
+      description: 'Camarones salteados al ajillo con mantequilla, limón y un toque de chile.',
       price: 13.5,
       category: 'Platos fuertes',
       image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=900&q=85',
     },
     {
       id: 4,
-      name: 'Pechuga a la plancha',
-      description: 'Pechuga de pollo dorada a la plancha con ensalada y papas caseras.',
+      name: 'Yuca frita con chicharrón',
+      description: 'Yuca dorada, chicharrón crujiente, curtido y salsa de tomate de la casa.',
       price: 9.5,
-      category: 'Platos fuertes',
-      image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85',
+      category: 'Antojitos',
+      image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=900&q=85',
     },
     {
       id: 5,
-      name: 'Chicharrones',
-      description: 'Chicharrones crujientes servidos con guarnición y salsa de la casa.',
+      name: 'Carne asada al carbón',
+      description: 'Corte de res marinado con cítricos, arroz, frijoles y plátano frito.',
       price: 8,
       category: 'Platos fuertes',
-      image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=900&q=85',
-      badge: 'Nuevo',
+      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85',
+      badge: 'De la casa',
     },
   ];
 
