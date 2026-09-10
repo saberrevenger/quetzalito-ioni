@@ -98,6 +98,15 @@
       }
     </section>
 
+    @if (cartCount > 0) {
+      <a class="cart-preview" href="#carrito" aria-label="Ver carrito">
+        <span class="cart-preview-icon"><ion-icon name="bag-handle"></ion-icon><b>{{ cartCount }}</b></span>
+        <span class="cart-preview-copy"><strong>Tu carrito</strong><small>{{ cartCount }} producto(s) agregado(s)</small></span>
+        <strong class="cart-preview-total">{{ formatPrice(cartTotal) }}</strong>
+        <ion-icon class="cart-preview-arrow" name="arrow-forward"></ion-icon>
+      </a>
+    }
+
     <footer class="footer"><span>© 2024 Quetzalito</span><span>Hecho para compartir <span class="footer-dot">·</span> Con amor desde nuestra cocina</span></footer>
   </main>
 </ion-content>

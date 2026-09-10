@@ -14,6 +14,15 @@
 .cart-section .empty-cart ion-icon { color: var(--terracotta); font-size: 28px; }
 .cart-section .empty-cart h3 { color: var(--ink); font-size: 20px; font-weight: 400; margin: 12px 0 4px; }
 .cart-section .empty-cart p { font-family: Arial, sans-serif; font-size: 12px; margin: 0; }
+.cart-preview { align-items: center; background: var(--ink); bottom: 24px; box-shadow: 0 12px 30px rgba(25,59,54,.25); color: #fffaf1; display: flex; gap: 12px; padding: 13px 16px; position: fixed; right: 24px; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; z-index: 5; }
+.cart-preview:hover { box-shadow: 0 16px 34px rgba(25,59,54,.32); transform: translateY(-3px); }
+.cart-preview-icon { align-items: center; background: var(--terracotta); display: flex; font-size: 21px; height: 39px; justify-content: center; position: relative; width: 39px; }
+.cart-preview-icon b { align-items: center; background: #fffaf1; border-radius: 50%; color: var(--terracotta); display: flex; font-family: Arial, sans-serif; font-size: 10px; height: 17px; justify-content: center; position: absolute; right: -7px; top: -7px; width: 17px; }
+.cart-preview-copy { display: flex; flex-direction: column; gap: 3px; }
+.cart-preview-copy strong { font-size: 14px; font-weight: 400; }
+.cart-preview-copy small { color: #c9d3cc; font-family: Arial, sans-serif; font-size: 10px; }
+.cart-preview-total { color: #f5b29e; font-family: Arial, sans-serif; font-size: 12px; margin-left: 8px; white-space: nowrap; }
+.cart-preview-arrow { font-size: 17px; margin-left: 2px; }
 
 @media (max-width: 760px) {
 	.cart-section { margin-left: -20px; margin-right: -20px; padding: 32px 20px; }
@@ -24,6 +33,9 @@
 	.cart-section .cart-item-info h3 { font-size: 15px; }
 	.cart-item-total { margin-left: 8px; }
 	.cart-section .cart-summary { max-width: none; }
+	.cart-preview { bottom: 15px; left: 20px; padding: 11px 13px; right: 20px; }
+	.cart-preview-copy { flex: 1; }
+	.cart-preview-total { margin-left: 0; }
 }
 :host { --ink: #193b36; --terracotta: #c75435; --cream: #f7f1e8; --line: #ddd6ca; --muted: #756e64; display: block; }
 ion-content { --background: var(--cream); }
