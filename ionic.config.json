@@ -1,0 +1,7 @@
+{
+  "name": "quetzalito",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
