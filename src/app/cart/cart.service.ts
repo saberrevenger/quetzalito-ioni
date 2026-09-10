@@ -7,7 +7,7 @@ export interface MenuItem {
   name: string;
   description: string;
   price: number;
-  category: 'Platos fuertes';
+  category: 'Antojitos' | 'Platos fuertes';
   image: string;
   favorite?: boolean;
   badge?: string;
