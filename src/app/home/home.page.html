@@ -5,14 +5,6 @@
         <span class="brand-mark">Q</span>
         <span class="brand-name">quetzalito</span>
       </a>
-      <div class="topbar-actions">
-        <span class="open-status"><span class="status-dot"></span> Abierto hoy · 12:00–22:30</span>
-        <button class="cart-button" type="button" (click)="isCartOpen = true" aria-label="Abrir carrito">
-          <ion-icon name="bag-handle"></ion-icon>
-          <span>Mi pedido</span>
-          @if (cartCount > 0) { <b>{{ cartCount }}</b> }
-        </button>
-      </div>
     </header>
 
     <section class="hero" id="inicio">
@@ -69,23 +61,43 @@
       </div>
     </section>
 
-    <footer class="footer"><span>© 2024 Quetzalito</span><span>Hecho para compartir <span class="footer-dot">·</span> Con amor desde nuestra cocina</span></footer>
-  </main>
+    <section class="cart-section" id="carrito" aria-labelledby="cart-title">
+      <div class="cart-heading">
+        <div>
+          <p class="eyebrow">Tu selección</p>
+          <h2 id="cart-title">Carrito <span>({{ cartCount }})</span></h2>
+        </div>
+        <strong>{{ formatPrice(cartTotal) }}</strong>
+      </div>
 
-  @if (isCartOpen) {
-    <div class="cart-backdrop" (click)="isCartOpen = false"></div>
-    <aside class="cart-panel" aria-label="Tu pedido">
-      <div class="cart-header"><div><p class="eyebrow">Tu selección</p><h2>Mi pedido <span>({{ cartCount }})</span></h2></div><button class="icon-button" type="button" (click)="isCartOpen = false" aria-label="Cerrar carrito"><ion-icon name="close"></ion-icon></button></div>
       @if (cartItems.length) {
         <div class="cart-list">
-          @for (item of cartItems; track $index) {
-            <div class="cart-item"><img [src]="item.image" [alt]="item.name" /><div class="cart-item-info"><h3>{{ item.name }}</h3><span>{{ formatPrice(item.price) }}</span><div class="quantity"><button type="button" (click)="removeFromCart(item)" aria-label="Quitar una unidad"><ion-icon name="remove"></ion-icon></button><b>{{ getItemQuantity(item) }}</b><button type="button" (click)="addToCart(item)" aria-label="Añadir una unidad"><ion-icon name="add"></ion-icon></button></div></div></div>
+          @for (item of cartProducts; track item.id) {
+            <article class="cart-item">
+              <img [src]="item.image" [alt]="item.name" />
+              <div class="cart-item-info">
+                <h3>{{ item.name }}</h3>
+                <span>{{ formatPrice(item.price) }} cada uno</span>
+                <div class="quantity">
+                  <button type="button" (click)="removeFromCart(item)" aria-label="Quitar una unidad"><ion-icon name="remove"></ion-icon></button>
+                  <b>{{ getItemQuantity(item) }}</b>
+                  <button type="button" (click)="addToCart(item)" aria-label="Añadir una unidad"><ion-icon name="add"></ion-icon></button>
+                </div>
+              </div>
+              <strong class="cart-item-total">{{ formatPrice(item.price * getItemQuantity(item)) }}</strong>
+            </article>
           }
         </div>
-        <div class="cart-summary"><div><span>Subtotal</span><strong>{{ formatPrice(cartTotal) }}</strong></div><small>Impuestos incluidos</small><button class="checkout-button" type="button">Continuar con el pedido <ion-icon name="arrow-forward"></ion-icon></button></div>
+        <div class="cart-summary">
+          <div><span>Subtotal</span><strong>{{ formatPrice(cartTotal) }}</strong></div>
+          <small>Impuestos incluidos</small>
+          <button class="checkout-button" type="button" (click)="sendOrder()">Enviar pedido por WhatsApp <ion-icon name="arrow-forward"></ion-icon></button>
+        </div>
       } @else {
-        <div class="empty-cart"><ion-icon name="bag-handle"></ion-icon><h3>Tu pedido está vacío</h3><p>Agrega algo rico del menú para comenzar.</p><button type="button" (click)="isCartOpen = false">Explorar menú</button></div>
+        <div class="empty-cart"><ion-icon name="bag-handle"></ion-icon><h3>Tu carrito está vacío</h3><p>Agrega un platillo del menú para comenzar.</p></div>
       }
-    </aside>
-  }
+    </section>
+
+    <footer class="footer"><span>© 2024 Quetzalito</span><span>Hecho para compartir <span class="footer-dot">·</span> Con amor desde nuestra cocina</span></footer>
+  </main>
 </ion-content>
