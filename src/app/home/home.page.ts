@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonIcon } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { add, arrowForward, bagHandle, remove, search, star } from 'ionicons/icons';
+import { CartService } from '../cart/cart.service';
 
 type Category = 'Todo' | 'Favoritos' | 'Platos fuertes';
-
 interface MenuItem {
   id: number;
   name: string;
@@ -27,7 +28,6 @@ export class HomePage {
   readonly categories: Category[] = ['Todo', 'Favoritos', 'Platos fuertes'];
   selectedCategory: Category = 'Todo';
   searchTerm = '';
-  cartItems: MenuItem[] = [];
   readonly menuItems: MenuItem[] = [
     {
       id: 1,
@@ -75,7 +75,7 @@ export class HomePage {
     },
   ];
 
-  constructor() {
+  constructor(public readonly cart: CartService, private readonly router: Router) {
     addIcons({ add, arrowForward, bagHandle, remove, search, star });
   }
 
@@ -91,51 +91,31 @@ export class HomePage {
   }
 
   get cartCount(): number {
-    return this.cartItems.length;
+    return this.cart.cartCount;
   }
 
   get cartTotal(): number {
-    return this.cartItems.reduce((total, item) => total + item.price, 0);
+    return this.cart.cartTotal;
   }
 
   get cartProducts(): MenuItem[] {
-    return this.menuItems.filter((item) => this.cartItems.some((cartItem) => cartItem.id === item.id));
+    return this.cart.cartProducts;
   }
 
   addToCart(item: MenuItem): void {
-    this.cartItems = [...this.cartItems, item];
+    this.cart.addToCart(item);
   }
 
   removeFromCart(item: MenuItem): void {
-    const itemIndex = this.cartItems.findIndex((cartItem) => cartItem.id === item.id);
-    if (itemIndex === -1) return;
-    this.cartItems = this.cartItems.filter((_, index) => index !== itemIndex);
+    this.cart.removeFromCart(item);
   }
 
   getItemQuantity(item: MenuItem): number {
-    return this.cartItems.filter((cartItem) => cartItem.id === item.id).length;
+    return this.cart.getItemQuantity(item);
   }
 
-  sendOrder(): void {
-    const orderLines = this.cartProducts.map((item) => {
-      const quantity = this.getItemQuantity(item);
-      return `🍽️ *${quantity} x ${item.name}*\n   ${this.formatPrice(item.price * quantity)}`;
-    });
-    const message = [
-      '✨ *NUEVO PEDIDO - QUETZALITO* ✨',
-      '━━━━━━━━━━━━━━━━━━',
-      '¡Hola! Quiero disfrutar estos platillos:',
-      '',
-      ...orderLines,
-      '',
-      '━━━━━━━━━━━━━━━━━━',
-      `🛍️ *${this.cartCount} producto(s)*`,
-      `💰 *TOTAL: ${this.formatPrice(this.cartTotal)}*`,
-      '',
-      '📲 Por favor, confirmen mi pedido. ¡Gracias!',
-    ].join('\n');
-    const whatsappUrl = `https://wa.me/50379782618?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  openCart(): void {
+    this.router.navigate(['/carrito']);
   }
 
   setCategory(category: Category): void {
@@ -143,6 +123,6 @@ export class HomePage {
   }
 
   formatPrice(price: number): string {
-    return price.toLocaleString('en-US', { currency: 'USD', style: 'currency' });
+    return this.cart.formatPrice(price);
   }
 }

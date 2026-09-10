@@ -1,0 +1,66 @@
+<ion-content [fullscreen]="true">
+  <main class="cart-page">
+    <header class="cart-topbar">
+      <a class="back-link" routerLink="/home" aria-label="Volver al menú"><ion-icon name="arrow-back"></ion-icon><span>Volver al menú</span></a>
+      <div class="brand"><span class="brand-mark">Q</span><span class="brand-name">quetzalito</span></div>
+    </header>
+
+    <section class="cart-content" aria-labelledby="cart-title">
+      <div class="cart-heading">
+        <div><p class="eyebrow">Tu selección</p><h1 id="cart-title">Carrito <span>({{ cartCount }})</span></h1></div>
+        <strong>{{ formatPrice(cartTotal) }}</strong>
+      </div>
+
+      @if (cart.cartItems.length) {
+        <div class="cart-list">
+          @for (item of cartProducts; track item.id) {
+            <article class="cart-item">
+              <img [src]="item.image" [alt]="item.name" />
+              <div class="cart-item-info">
+                <h2>{{ item.name }}</h2>
+                <span>{{ formatPrice(item.price) }} cada uno</span>
+                <div class="quantity">
+                  <button type="button" (click)="cart.removeFromCart(item)" aria-label="Quitar una unidad"><ion-icon name="remove"></ion-icon></button>
+                  <b>{{ getItemQuantity(item) }}</b>
+                  <button type="button" (click)="cart.addToCart(item)" aria-label="Añadir una unidad"><ion-icon name="add"></ion-icon></button>
+                </div>
+              </div>
+              <strong class="item-total">{{ formatPrice(item.price * getItemQuantity(item)) }}</strong>
+            </article>
+          }
+        </div>
+
+        <section class="customer-form" aria-labelledby="details-title">
+          <p class="eyebrow" id="details-title">Datos para tu pedido</p>
+          <label>Nombre completo
+            <input type="text" [(ngModel)]="cart.customerName" (input)="cart.orderError = ''" placeholder="Escribe tu nombre" autocomplete="name" />
+          </label>
+          <label>Número de teléfono
+            <input type="tel" [(ngModel)]="cart.customerPhone" (input)="cart.orderError = ''" placeholder="Ej. 7978 2618" autocomplete="tel" />
+          </label>
+          <label>¿Cómo recibirás tu pedido?
+            <select [(ngModel)]="cart.orderType" (change)="cart.orderError = ''">
+              <option value="local">Comer en el local</option>
+              <option value="recoger">Pasar a recoger</option>
+              <option value="delivery">Delivery</option>
+            </select>
+          </label>
+          @if (cart.orderType === 'delivery') {
+            <label>Ubicación de entrega
+              <textarea [(ngModel)]="cart.deliveryLocation" (input)="cart.orderError = ''" placeholder="Colonia, calle, número de casa y referencias" rows="3"></textarea>
+            </label>
+          }
+          @if (cart.orderError) { <p class="form-error" role="alert">{{ cart.orderError }}</p> }
+        </section>
+
+        <div class="cart-summary">
+          <div><span>Subtotal</span><strong>{{ formatPrice(cartTotal) }}</strong></div>
+          <small>Impuestos incluidos</small>
+          <button class="checkout-button" type="button" (click)="sendOrder()">Enviar pedido por WhatsApp <ion-icon name="arrow-forward"></ion-icon></button>
+        </div>
+      } @else {
+        <div class="empty-cart"><ion-icon name="bag-handle"></ion-icon><h2>Tu carrito está vacío</h2><p>Agrega un platillo del menú para comenzar.</p><a routerLink="/home">Explorar menú</a></div>
+      }
+    </section>
+  </main>
+</ion-content>
