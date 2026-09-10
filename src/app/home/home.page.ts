@@ -6,7 +6,7 @@ import { addIcons } from 'ionicons';
 import { add, arrowForward, bagHandle, remove, search, star } from 'ionicons/icons';
 import { CartService } from '../cart/cart.service';
 
-type Category = 'Todo' | 'Favoritos' | 'Antojitos' | 'Platos fuertes';
+type Category = 'Todo' | 'Favoritos' | 'Antojitos' | 'Platos fuertes' | 'Bebidas';
 interface MenuItem {
   id: number;
   name: string;
@@ -25,27 +25,27 @@ interface MenuItem {
   imports: [FormsModule, IonContent, IonIcon],
 })
 export class HomePage {
-  readonly categories: Category[] = ['Todo', 'Favoritos', 'Antojitos', 'Platos fuertes'];
+  readonly categories: Category[] = ['Todo', 'Favoritos', 'Antojitos', 'Platos fuertes', 'Bebidas'];
   selectedCategory: Category = 'Todo';
   searchTerm = '';
   readonly menuItems: MenuItem[] = [
     {
       id: 1,
-      name: 'Pupusas revueltas',
-      description: 'Pupusas de maíz rellenas de queso, chicharrón y frijol, con curtido casero.',
+      name: 'Pechuga a la plancha',
+      description: 'Pechuga de pollo dorada a la plancha, servida con arroz, ensalada y guarnición casera.',
       price: 12.5,
-      category: 'Antojitos',
-      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+      category: 'Platos fuertes',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/El_S%C3%BAper_Almuerzo_-2_%28Part_Deux%29.jpg?width=900',
       favorite: true,
       badge: 'Favorito',
     },
     {
       id: 2,
-      name: 'Sopa de gallina india',
-      description: 'Caldo reconfortante con gallina, verduras de temporada y hierbabuena fresca.',
+      name: 'Sopa de gallina',
+      description: 'Caldo casero de gallina con verduras, elote y hierbas aromáticas al estilo salvadoreño.',
       price: 7.5,
       category: 'Platos fuertes',
-      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=85',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sopa_de_pata.jpg?width=900',
       favorite: true,
     },
     {
@@ -54,7 +54,7 @@ export class HomePage {
       description: 'Camarones salteados al ajillo con mantequilla, limón y un toque de chile.',
       price: 13.5,
       category: 'Platos fuertes',
-      image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=900&q=85',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2010.05.05.151853_Mariscada_El_Sunzal_El_Salvador.jpg?width=900',
     },
     {
       id: 4,
@@ -62,7 +62,7 @@ export class HomePage {
       description: 'Yuca dorada, chicharrón crujiente, curtido y salsa de tomate de la casa.',
       price: 9.5,
       category: 'Antojitos',
-      image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=900&q=85',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Empanada_y_yuca_frita_salvadore%C3%B1a.jpg?width=900',
     },
     {
       id: 5,
@@ -70,8 +70,42 @@ export class HomePage {
       description: 'Corte de res marinado con cítricos, arroz, frijoles y plátano frito.',
       price: 8,
       category: 'Platos fuertes',
-      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Platanos%2C_arroz%2C_y_frijoles%2C_Lago_de_Coatepeque%2C_El_Salvador.jpg?width=900',
       badge: 'De la casa',
+    },
+    {
+      id: 6,
+      name: 'Tamales salvadoreños',
+      description: 'Tamales de masa suave, envueltos en hoja y preparados con receta tradicional.',
+      price: 6.5,
+      category: 'Antojitos',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tamales_Salvadore%C3%B1os_1.jpg?width=900',
+      badge: 'Tradicional',
+    },
+    {
+      id: 7,
+      name: 'Panes con pollo',
+      description: 'Pan salvadoreño relleno de pollo, verduras y salsa casera.',
+      price: 8.5,
+      category: 'Platos fuertes',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Panesconpollo-1509816_10152125609288668_5472564942554370624_n.jpg?width=900',
+    },
+    {
+      id: 8,
+      name: 'Elote loco',
+      description: 'Elote cubierto con mayonesa, queso, limón y chile al gusto.',
+      price: 4.5,
+      category: 'Antojitos',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Elote_loco.jpg?width=900',
+    },
+    {
+      id: 9,
+      name: 'Horchata salvadoreña',
+      description: 'Bebida fría de morro con canela, perfecta para acompañar tu pedido.',
+      price: 3.5,
+      category: 'Bebidas',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Horchata_SV.png?width=900',
+      badge: 'Refrescante',
     },
   ];
 
