@@ -8,9 +8,15 @@
     </header>
 
     <section class="hero" id="inicio">
+      <div class="hero-orb" aria-hidden="true"></div>
       <div class="hero-copy">
         <p class="eyebrow">Cocina salvadoreña · hecha con corazón</p>
-        <h1>El sabor de<br /><em>El Salvador.</em></h1>
+        <h1 class="gravity-title" aria-label="El sabor de El Salvador.">
+          <span aria-hidden="true">E</span><span aria-hidden="true">l</span>
+          <span aria-hidden="true"> </span><span aria-hidden="true">s</span><span aria-hidden="true">a</span><span aria-hidden="true">b</span><span aria-hidden="true">o</span><span aria-hidden="true">r</span>
+          <span aria-hidden="true"> </span><span aria-hidden="true">d</span><span aria-hidden="true">e</span><br />
+          <em><span aria-hidden="true">E</span><span aria-hidden="true">l</span><span aria-hidden="true"> </span><span aria-hidden="true">S</span><span aria-hidden="true">a</span><span aria-hidden="true">l</span><span aria-hidden="true">v</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span><span aria-hidden="true">o</span><span aria-hidden="true">r</span><span aria-hidden="true">.</span></em>
+        </h1>
         <p class="hero-description">De San Salvador a tu mesa: platos caseros y recetas de familia preparadas al momento.</p>
         <a class="hero-link" href="#menu">Ver el menú <ion-icon name="arrow-forward"></ion-icon></a>
       </div>
@@ -29,8 +35,15 @@
           <input [(ngModel)]="searchTerm" placeholder="Buscar en el menú" aria-label="Buscar en el menú" />
         </div>
       </div>
+      <div class="menu-signal" aria-live="polite">
+        <span class="signal-pulse" aria-hidden="true"></span>
+        <span>Preparado al momento</span>
+        <strong class="result-counter">{{ filteredItems.length }}</strong>
+        <small>opciones disponibles</small>
+      </div>
 
       <nav class="category-nav" aria-label="Categorías del menú">
+        <span class="category-progress" aria-hidden="true"></span>
         @for (category of categories; track category) {
           <button type="button" [class.active]="selectedCategory === category" (click)="setCategory(category)">
             @if (category === 'Favoritos') { <ion-icon name="star"></ion-icon> }
@@ -40,10 +53,11 @@
       </nav>
 
       <div class="menu-grid">
-        @for (item of filteredItems; track item.id) {
-          <article class="menu-card">
+        @for (item of filteredItems; track item.id; let itemIndex = $index) {
+          <article class="menu-card" [attr.data-index]="itemIndex + 1" [style.animation-delay.ms]="itemIndex * 70">
             <div class="card-image-wrap">
               <img [src]="item.image" [alt]="item.name" />
+              <span class="image-sheen" aria-hidden="true"></span>
               @if (item.badge) { <span class="item-badge">{{ item.badge }}</span> }
               @if (item.favorite) { <span class="favorite-mark"><ion-icon name="star"></ion-icon></span> }
             </div>

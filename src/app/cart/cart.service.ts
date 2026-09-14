@@ -22,7 +22,7 @@ export class CartService {
       description: 'Pechuga de pollo dorada a la plancha, servida con arroz, ensalada y guarnición casera.',
       price: 12.5,
       category: 'Platos fuertes',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/El_S%C3%BAper_Almuerzo_-2_%28Part_Deux%29.jpg?width=900',
+      image: 'assets/icon/pechuga.png',
       favorite: true,
       badge: 'Favorito',
     },
@@ -32,7 +32,7 @@ export class CartService {
       description: 'Caldo casero de gallina con verduras, elote y hierbas aromáticas al estilo salvadoreño.',
       price: 7.5,
       category: 'Platos fuertes',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sopa_de_pata.jpg?width=900',
+      image: 'assets/icon/sopa de gallina.jpg',
       favorite: true,
     },
     {
@@ -41,7 +41,7 @@ export class CartService {
       description: 'Camarones salteados al ajillo con mantequilla, limón y un toque de chile.',
       price: 13.5,
       category: 'Platos fuertes',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2010.05.05.151853_Mariscada_El_Sunzal_El_Salvador.jpg?width=900',
+      image: 'assets/icon/camarones al ajillo.jpg',
     },
     {
       id: 4,
@@ -49,7 +49,7 @@ export class CartService {
       description: 'Yuca dorada, chicharrón crujiente, curtido y salsa de tomate de la casa.',
       price: 9.5,
       category: 'Antojitos',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Empanada_y_yuca_frita_salvadore%C3%B1a.jpg?width=900',
+      image: 'assets/icon/yuca frita con chicharrones.jpg',
     },
     {
       id: 5,
@@ -57,7 +57,7 @@ export class CartService {
       description: 'Corte de res marinado con cítricos, arroz, frijoles y plátano frito.',
       price: 8,
       category: 'Platos fuertes',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Platanos%2C_arroz%2C_y_frijoles%2C_Lago_de_Coatepeque%2C_El_Salvador.jpg?width=900',
+      image: 'assets/icon/carne asada.jpg',
       badge: 'De la casa',
     },
     {
@@ -66,7 +66,7 @@ export class CartService {
       description: 'Tamales de masa suave, envueltos en hoja y preparados con receta tradicional.',
       price: 6.5,
       category: 'Antojitos',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tamales_Salvadore%C3%B1os_1.jpg?width=900',
+      image: 'assets/icon/tamales.jpg',
       badge: 'Tradicional',
     },
     {
@@ -75,7 +75,7 @@ export class CartService {
       description: 'Pan salvadoreño relleno de pollo, verduras y salsa casera.',
       price: 8.5,
       category: 'Platos fuertes',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Panesconpollo-1509816_10152125609288668_5472564942554370624_n.jpg?width=900',
+      image: 'assets/icon/panes con pollo.jpg',
     },
     {
       id: 8,
@@ -83,7 +83,7 @@ export class CartService {
       description: 'Elote cubierto con mayonesa, queso, limón y chile al gusto.',
       price: 4.5,
       category: 'Antojitos',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Elote_loco.jpg?width=900',
+      image: 'assets/icon/elotes locos.jpg',
     },
     {
       id: 9,
@@ -91,7 +91,7 @@ export class CartService {
       description: 'Bebida fría de morro con canela, perfecta para acompañar tu pedido.',
       price: 3.5,
       category: 'Bebidas',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Horchata_SV.png?width=900',
+      image: 'assets/icon/horchata.png',
       badge: 'Refrescante',
     },
   ];
