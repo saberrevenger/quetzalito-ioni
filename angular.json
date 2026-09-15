@@ -53,7 +53,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/quetzalito-ioni/"
+              "baseHref": "/quetzalitosv/"
             },
             "development": {
               "optimization": false,
